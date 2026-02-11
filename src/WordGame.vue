@@ -7,23 +7,54 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 router.push('/about')
 
-const word = ref('')
+const firstWord = ref('')
+const destWord = ref('')
 
 const relatedWords = ref({ results: [] })
 
 const words = ref({ results: [] })
 
+function flattenRelatedWords(data) {
+  let newData = data.flatMap((group) =>
+    group.words.map((word) => ({
+      word: word,
+      type: group.relationshipType,
+    })),
+  )
+
+  console.log(newData)
+  const seen = new Set()
+
+  newData = newData.filter((obj) => {
+    if (!/^[a-z]+$/.test(obj.word)) return false // we onky keep minuscules and remove phrases
+
+    if (seen.has(obj.word)) return false // we remove duplicates
+
+    seen.add(obj.word)
+    return true
+  })
+
+  console.log(newData)
+  return newData
+}
+
 onMounted(async () => {
-  const data = await getWordData()
-  word.value = data
-  console.log(data.word)
+  const firstData = await getWordData()
+  firstWord.value = firstData
+  // firstWord.value = { word: 'accompanying', id: 0 }
+  // firstData.word = 'accompanying'
+  console.log(firstData.firstWord)
+
+  const destData = await getWordData()
+  destWord.value = destData
+  console.log(destData.destWord)
 
   const wordsData = await getWordsData()
   words.value = wordsData.results
-  console.log(wordsData.word)
+  console.log(wordsData.results)
 
-  const relatedData = await getRelatedWordsData(data.word)
-  relatedWords.value = relatedData
+  const relatedData = await getRelatedWordsData(firstData.word)
+  relatedWords.value = flattenRelatedWords(relatedData)
 })
 </script>
 
@@ -41,7 +72,11 @@ onMounted(async () => {
   </ul>
 
   <p>
-    {{ word.word }}
+    {{ firstWord.word }}
+  </p>
+
+  <p>
+    {{ destWord.word }}
   </p>
 
   <li v-for="word in relatedWords" :key="word.id">

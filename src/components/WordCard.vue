@@ -1,14 +1,21 @@
 <script setup>
 const props = defineProps({
-  url: { type: String, required: true },
-  text: { type: String, default: 'ahah', required: true },
+  word: { type: String, required: true },
+  type: { type: String, default: 'synonym', required: true },
 })
-console.log(props.text)
 </script>
 
 <template>
-  <h1>{{ text }}</h1>
-  <h1 v-if="text === 'ahah'">Vue is awesome!</h1>
+  <div class="word" @click="console.log(word)">
+    <h1>{{ word }}</h1>
+    <p>{{ type }}</p>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.word {
+  background-color: aqua;
+  padding: 10px;
+  border-radius: 10px;
+}
+</style>

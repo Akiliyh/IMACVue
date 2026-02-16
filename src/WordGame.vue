@@ -1,6 +1,7 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { getWordData, getRelatedWordsData, getWordsData } from '@/api/wordAPI'
+import WordCard from '@/components/WordCard.vue'
 
 import { useRouter } from 'vue-router'
 
@@ -10,11 +11,13 @@ router.push('/about')
 const firstWord = ref('')
 const destWord = ref('')
 
-const relatedWords = ref({ results: [] })
+const relatedWords = ref([])
+const words = ref([])
 
-const words = ref({ results: [] })
+const inputField = ref('')
 
 function flattenRelatedWords(data) {
+  // here we want to get the word and its type at the same level
   let newData = data.flatMap((group) =>
     group.words.map((word) => ({
       word: word,
@@ -56,20 +59,23 @@ onMounted(async () => {
   const relatedData = await getRelatedWordsData(firstData.word)
   relatedWords.value = flattenRelatedWords(relatedData)
 })
+
+// we deal with the filtering here
+
+const filteredWords = computed(() =>
+  relatedWords.value.filter((word) => {
+    if (inputField.value == '') return true
+    return word.word.toLowerCase().indexOf(inputField.value.toLowerCase()) >= 0
+  }),
+)
 </script>
 
 <template>
-  <h1>OHHH</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1>Cnon</h1>
 
-  <ul>
-    <li v-for="word in words" :key="word.id">
-      {{ word.word }}
-    </li>
-  </ul>
+  <div>
+    <input type="text" v-model="inputField" />
+  </div>
 
   <p>
     {{ firstWord.word }}
@@ -79,9 +85,12 @@ onMounted(async () => {
     {{ destWord.word }}
   </p>
 
-  <li v-for="word in relatedWords" :key="word.id">
-    {{ word.word }}
-  </li>
+  <WordCard
+    v-for="word in filteredWords"
+    :key="word.id"
+    :word="word.word"
+    :type="word.type"
+  ></WordCard>
 </template>
 
 <style scoped></style>

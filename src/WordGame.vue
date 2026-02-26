@@ -89,13 +89,15 @@ const filteredWords = computed(() => {
     <input type="text" v-model="inputField" />
   </div>
 
-  <p>
-    {{ firstWord.word }}
-  </p>
+  <div>
+    <i v-if="!firstWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <p v-else>{{ firstWord.word }}</p>
+  </div>
 
-  <p>
-    {{ destWord.word }}
-  </p>
+  <div>
+    <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <p v-else>{{ destWord.word }}</p>
+  </div>
 
   <div class="guessed-words">
     <template v-for="(guessedWord, index) in guessedWords" :key="guessedWord.indexOf">
@@ -107,7 +109,9 @@ const filteredWords = computed(() => {
   </div>
 
   <div class="words">
+    <i v-if="filteredWords.length == 0" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
     <WordCard
+      v-else
       v-for="word in filteredWords"
       :key="word.id"
       :word="word.word"

@@ -72,12 +72,14 @@ onMounted(async () => {
 
 // we deal with the filtering here
 
-const filteredWords = computed(() =>
-  relatedWords.value.filter((word) => {
+const filteredWords = computed(() => {
+  const filtered = relatedWords.value.filter((word) => {
     if (inputField.value == '') return true
-    return word.word.toLowerCase().indexOf(inputField.value.toLowerCase()) >= 0
-  }),
-)
+    return word.word.toLowerCase().includes(inputField.value.toLowerCase())
+  })
+
+  return filtered.sort(() => Math.random() - 0.5)
+})
 </script>
 
 <template>

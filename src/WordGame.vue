@@ -104,13 +104,15 @@ const filteredWords = computed(() =>
     </template>
   </div>
 
-  <WordCard
-    v-for="word in filteredWords"
-    :key="word.id"
-    :word="word.word"
-    :type="word.type"
-    :switchWord="switchWord"
-  ></WordCard>
+  <div class="words">
+    <WordCard
+      v-for="word in filteredWords"
+      :key="word.id"
+      :word="word.word"
+      :type="word.type"
+      :switchWord="switchWord"
+    ></WordCard>
+  </div>
 </template>
 
 <style scoped>
@@ -121,5 +123,14 @@ const filteredWords = computed(() =>
 
 .guessed-words p {
   width: fit-content;
+}
+
+.words {
+  display: flex;
+  width: auto;
+  flex-wrap: wrap;
+  justify-content: initial;
+  align-content: flex-end;
+  gap: 10px;
 }
 </style>

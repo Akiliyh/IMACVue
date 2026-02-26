@@ -16,8 +16,9 @@ const props = defineProps({
 <style scoped>
 .word {
   background-color: aqua;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   cursor: pointer;
+  width: fit-content;
 }
 </style>

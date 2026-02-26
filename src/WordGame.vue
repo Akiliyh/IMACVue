@@ -14,6 +14,8 @@ const destWord = ref('')
 const relatedWords = ref([])
 const words = ref([])
 
+const guessedWords = ref([])
+
 const inputField = ref('')
 
 function flattenRelatedWords(data) {
@@ -39,6 +41,14 @@ function flattenRelatedWords(data) {
 
   console.log(newData)
   return newData
+}
+
+const switchWord = async (word) => {
+  guessedWords.value.push(word)
+  relatedWords.value = []
+  console.log(word)
+  const relatedData = await getRelatedWordsData(word)
+  relatedWords.value = flattenRelatedWords(relatedData)
 }
 
 onMounted(async () => {
@@ -85,12 +95,31 @@ const filteredWords = computed(() =>
     {{ destWord.word }}
   </p>
 
+  <div class="guessed-words">
+    <template v-for="(guessedWord, index) in guessedWords" :key="guessedWord.indexOf">
+      <template v-if="index > 0">
+        <p>—</p>
+      </template>
+      <p>{{ guessedWord }}</p>
+    </template>
+  </div>
+
   <WordCard
     v-for="word in filteredWords"
     :key="word.id"
     :word="word.word"
     :type="word.type"
+    :switchWord="switchWord"
   ></WordCard>
 </template>
 
-<style scoped></style>
+<style scoped>
+.guessed-words {
+  display: flex;
+  gap: 10px;
+}
+
+.guessed-words p {
+  width: fit-content;
+}
+</style>

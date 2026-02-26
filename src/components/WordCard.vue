@@ -2,11 +2,12 @@
 const props = defineProps({
   word: { type: String, required: true },
   type: { type: String, default: 'synonym', required: true },
+  switchWord: { type: Function, required: true },
 })
 </script>
 
 <template>
-  <div class="word" @click="console.log(word)">
+  <div class="word" @click="switchWord(word)">
     <h1>{{ word }}</h1>
     <p>{{ type }}</p>
   </div>
@@ -17,5 +18,6 @@ const props = defineProps({
   background-color: aqua;
   padding: 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 </style>

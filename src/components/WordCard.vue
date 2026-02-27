@@ -13,64 +13,64 @@ const props = defineProps({
   </div>
 </template>
 
-<style scoped>
+<style lang="scss">
 .word {
-  background-color: aqua;
+  background-color: $primary-color;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
   width: fit-content;
-}
 
-.word.hyponym {
-  background-color: blanchedalmond;
-}
+  &.hyponym {
+    background-color: blanchedalmond;
+  }
 
-.word.synonym {
-  background-color: blueviolet;
-}
+  &.synonym {
+    background-color: blueviolet;
+  }
 
-.word.hypernym {
-  background-color: silver;
-}
+  &.hypernym {
+    background-color: silver;
+  }
 
-.word.same-context {
-  background-color: azure;
-}
+  &.word.same-context {
+    background-color: azure;
+  }
 
-.word.rhyme {
-  background-color: burlywood;
-}
+  &.rhyme {
+    background-color: burlywood;
+  }
 
-.word.verb-stem {
-  background-color: khaki;
-}
+  &.verb-stem {
+    background-color: khaki;
+  }
 
-.word.antonym {
-  background-color: floralwhite;
-}
+  &.antonym {
+    background-color: floralwhite;
+  }
 
-.word.etymologically-related-term {
-  background-color: salmon;
-}
+  &.etymologically-related-term {
+    background-color: salmon;
+  }
 
-.word.cross-reference {
-  background-color: aquamarine;
-}
+  &.cross-reference {
+    background-color: aquamarine;
+  }
 
-.word.equivalent {
-  background-color: mistyrose;
-}
+  &.equivalent {
+    background-color: mistyrose;
+  }
 
-.word.verb-form {
-  background-color: mediumturquoise;
-}
+  &.verb-form {
+    background-color: mediumturquoise;
+  }
 
-.word.variant {
-  background-color: ivory;
-}
+  &.variant {
+    background-color: ivory;
+  }
 
-.word.form {
-  background-color: aliceblue;
+  &.form {
+    background-color: aliceblue;
+  }
 }
 </style>

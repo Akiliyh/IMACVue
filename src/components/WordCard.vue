@@ -20,6 +20,7 @@ const props = defineProps({
   border-radius: 10px;
   cursor: pointer;
   width: fit-content;
+  height: fit-content;
 
   &.hyponym {
     background-color: blanchedalmond;

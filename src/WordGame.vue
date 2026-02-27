@@ -46,7 +46,6 @@ function flattenRelatedWords(data) {
 const switchWord = async (word) => {
   guessedWords.value.push(word)
   relatedWords.value = []
-  console.log(word)
   const relatedData = await getRelatedWordsData(word)
   relatedWords.value = flattenRelatedWords(relatedData)
 }
@@ -54,6 +53,7 @@ const switchWord = async (word) => {
 onMounted(async () => {
   const firstData = await getWordData()
   firstWord.value = firstData
+  guessedWords.value.push(firstData.word)
   // firstWord.value = { word: 'accompanying', id: 0 }
   // firstData.word = 'accompanying'
   console.log(firstData.firstWord)
@@ -87,29 +87,33 @@ const checkGameOver = computed(() => {
 </script>
 
 <template>
-  <h1>Cnon</h1>
+  <div class="info">
+    <div>
+      <h1>Cnon</h1>
 
-  <div>
-    <input type="text" v-model="inputField" />
-  </div>
+      <div>
+        <input type="text" v-model="inputField" />
+      </div>
 
-  <div>
-    <i v-if="!firstWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-    <p v-else>{{ firstWord.word }}</p>
-  </div>
+      <div>
+        <i v-if="!firstWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        <p v-else>{{ firstWord.word }}</p>
+      </div>
 
-  <div>
-    <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-    <p v-else>{{ destWord.word }}</p>
-  </div>
+      <div>
+        <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        <p v-else>{{ destWord.word }}</p>
+      </div>
+    </div>
 
-  <div class="guessed-words">
-    <template v-for="(guessedWord, index) in guessedWords" :key="guessedWord.indexOf">
-      <template v-if="index > 0">
-        <p>—</p>
+    <div class="guessed-words">
+      <template v-for="(guessedWord, index) in guessedWords" :key="guessedWord.indexOf">
+        <template v-if="index > 0">
+          <p>—</p>
+        </template>
+        <p>{{ guessedWord }}</p>
       </template>
-      <p>{{ guessedWord }}</p>
-    </template>
+    </div>
   </div>
 
   <div class="words" v-if="!checkGameOver">
@@ -123,7 +127,7 @@ const checkGameOver = computed(() => {
       :switchWord="switchWord"
     ></WordCard>
   </div>
-  <div class="div" v-else>
+  <div class="div" v-else-if="guessedWords.length > 0">
     <h1>Congrats!</h1>
   </div>
 </template>
@@ -132,6 +136,24 @@ const checkGameOver = computed(() => {
 i {
   width: fit-content;
   height: fit-content;
+}
+
+.info {
+  position: sticky;
+  top: 10px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 
 .guessed-words {
@@ -149,7 +171,6 @@ i {
   flex-wrap: wrap;
   justify-content: initial;
   gap: 10px;
-  height: 60vh;
   overflow: scroll;
 }
 </style>

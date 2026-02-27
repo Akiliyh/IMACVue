@@ -80,6 +80,10 @@ const filteredWords = computed(() => {
 
   return filtered.sort(() => Math.random() - 0.5)
 })
+
+const checkGameOver = computed(() => {
+  return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
+})
 </script>
 
 <template>
@@ -108,8 +112,8 @@ const filteredWords = computed(() => {
     </template>
   </div>
 
-  <div class="words">
-    <i v-if="filteredWords.length == 0" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+  <div class="words" v-if="!checkGameOver">
+    <i v-if="relatedWords.length == 0" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
     <WordCard
       v-else
       v-for="word in filteredWords"
@@ -119,16 +123,24 @@ const filteredWords = computed(() => {
       :switchWord="switchWord"
     ></WordCard>
   </div>
+  <div class="div" v-else>
+    <h1>Congrats!</h1>
+  </div>
 </template>
 
 <style scoped>
+i {
+  width: fit-content;
+  height: fit-content;
+}
+
 .guessed-words {
   display: flex;
   gap: 10px;
-}
 
-.guessed-words p {
-  width: fit-content;
+  p {
+    width: fit-content;
+  }
 }
 
 .words {

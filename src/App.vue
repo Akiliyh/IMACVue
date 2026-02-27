@@ -12,4 +12,13 @@ import 'primeicons/primeicons.css'
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+@font-face {
+  font-family: Clash_Display;
+  src: url('@/assets/fonts/ClashDisplay-Variable.woff2') format('woff2');
+}
+
+* {
+  font-family: Clash_Display;
+}
+</style>

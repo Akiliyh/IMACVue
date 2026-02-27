@@ -137,7 +137,7 @@ i.pi-spin {
   width: fit-content;
   height: fit-content;
 
-  &.pi-spin {
+  .words & {
     font-size: 2rem;
     margin-left: auto;
     margin-right: auto;

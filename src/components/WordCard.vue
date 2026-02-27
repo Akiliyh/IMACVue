@@ -57,4 +57,20 @@ const props = defineProps({
 .word.cross-reference {
   background-color: aquamarine;
 }
+
+.word.equivalent {
+  background-color: mistyrose;
+}
+
+.word.verb-form {
+  background-color: mediumturquoise;
+}
+
+.word.variant {
+  background-color: ivory;
+}
+
+.word.form {
+  background-color: aliceblue;
+}
 </style>

@@ -136,7 +136,8 @@ const filteredWords = computed(() => {
   width: auto;
   flex-wrap: wrap;
   justify-content: initial;
-  align-content: flex-end;
   gap: 10px;
+  height: 60vh;
+  overflow: scroll;
 }
 </style>

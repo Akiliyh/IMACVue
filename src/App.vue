@@ -12,7 +12,7 @@ import 'primeicons/primeicons.css'
   </main>
 </template>
 
-<style scoped>
+<style lang="scss">
 @font-face {
   font-family: Clash_Display;
   src: url('@/assets/fonts/ClashDisplay-Variable.woff2') format('woff2');
@@ -20,5 +20,9 @@ import 'primeicons/primeicons.css'
 
 * {
   font-family: Clash_Display;
+}
+
+body {
+  background-color: $subtle-white;
 }
 </style>

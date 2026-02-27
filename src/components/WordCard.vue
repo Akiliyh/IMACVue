@@ -21,6 +21,12 @@ const props = defineProps({
   cursor: pointer;
   width: fit-content;
   height: fit-content;
+  border: 3px solid transparent;
+  transition: 0.3s ease-out;
+
+  &:hover {
+    border: 3px solid $primary-color;
+  }
 
   &.hyponym {
     background-color: blanchedalmond;

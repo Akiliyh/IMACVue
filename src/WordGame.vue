@@ -133,21 +133,30 @@ const checkGameOver = computed(() => {
 </template>
 
 <style scoped>
-i {
+i.pi-spin {
   width: fit-content;
   height: fit-content;
+
+  &.pi-spin {
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+  }
 }
 
 .info {
   position: sticky;
   top: 10px;
   background: white;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
-  width: 90%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px #0202630d;
 
   div {
     display: flex;

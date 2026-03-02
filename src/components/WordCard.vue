@@ -7,7 +7,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="'word ' + type" @click="switchWord(word)">
+  <div
+    :class="'word ' + type"
+    @click="switchWord(word)"
+    tabindex="0"
+    v-on:keypress="switchWord(word)"
+  >
     <h1>{{ word }}</h1>
     <p>{{ type }}</p>
   </div>
@@ -24,8 +29,10 @@ const props = defineProps({
   border: 3px solid transparent;
   transition: 0.3s ease-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     border: 3px solid $primary-color;
+    outline: none;
   }
 
   &.hyponym {

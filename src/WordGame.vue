@@ -18,6 +18,21 @@ const guessedWords = ref([])
 
 const inputField = ref('')
 
+const filters = ref({
+  rhyme: false,
+  antonym: false,
+  synonym: false,
+  hyponym: false,
+  hypernym: false,
+  'same-context': false,
+  'etymologically-related-term': false,
+  'cross-reference': false,
+  'verb-stem': false,
+  form: false,
+  variant: false,
+  equivalent: false,
+})
+
 function flattenRelatedWords(data) {
   // here we want to get the word and its type at the same level
   let newData = data.flatMap((group) =>
@@ -72,13 +87,28 @@ onMounted(async () => {
 
 // we deal with the filtering here
 
+const toggleFilter = (key) => {
+  filters.value[key] = !filters.value[key]
+}
+
 const filteredWords = computed(() => {
-  const filtered = relatedWords.value.filter((word) => {
+  const inputFiltered = relatedWords.value.filter((word) => {
     if (inputField.value == '') return true
-    return word.word.toLowerCase().includes(inputField.value.toLowerCase())
+    else return word.word.toLowerCase().includes(inputField.value.toLowerCase())
   })
 
-  return filtered.sort(() => Math.random() - 0.5)
+  const tagFiltered = inputFiltered.filter((word) => {
+    const entries = Object.entries(filters.value)
+    const hasActiveFilter = entries.some(([key, value]) => value)
+    const matchesActiveFilter = entries.some(([key, value]) => value && word.type === key)
+
+    if (!hasActiveFilter) return true // if no filter we display all
+    return matchesActiveFilter
+  })
+
+  console.log(tagFiltered)
+
+  return tagFiltered.sort(() => Math.random() - 0.5)
 })
 
 const checkGameOver = computed(() => {
@@ -93,6 +123,15 @@ const checkGameOver = computed(() => {
 
       <div>
         <input type="text" v-model="inputField" />
+        <button
+          v-for="[key, value] of Object.entries(filters)"
+          :key="key"
+          :class="'button ' + (value ? 'activated' : '')"
+          @click="toggleFilter(key.toString())"
+        >
+          {{ key.charAt(0).toUpperCase() + key.slice(1) }}
+          <!-- for capitalization -->
+        </button>
       </div>
 
       <div>
@@ -133,6 +172,14 @@ const checkGameOver = computed(() => {
 </template>
 
 <style scoped>
+/* to put in a button component after */
+
+.button {
+  &.activated {
+    background-color: gold;
+  }
+}
+
 i.pi-spin {
   width: fit-content;
   height: fit-content;

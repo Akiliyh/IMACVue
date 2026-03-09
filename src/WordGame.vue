@@ -1,6 +1,11 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import { getWordData, getRelatedWordsData, getWordsData } from '@/api/wordAPI'
+import {
+  getWordData,
+  getRelatedWordsData,
+  getWordsData,
+  getWordDefinitionData,
+} from '@/api/wordAPI'
 import WordCard from '@/components/WordCard.vue'
 
 import { useRouter } from 'vue-router'
@@ -72,6 +77,9 @@ onMounted(async () => {
   // firstWord.value = { word: 'accompanying', id: 0 }
   // firstData.word = 'accompanying'
   console.log(firstData.firstWord)
+
+  const firstDefinitionData = await getWordDefinitionData(firstData.word)
+  console.log(firstDefinitionData)
 
   const destData = await getWordData()
   destWord.value = destData

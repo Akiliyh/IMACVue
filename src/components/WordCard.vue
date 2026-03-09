@@ -27,7 +27,7 @@ const props = defineProps({
   width: fit-content;
   height: fit-content;
   border: 3px solid transparent;
-  transition: 0.3s ease-out;
+  transition: border 0.3s ease-out;
 
   &:hover,
   &:focus-visible {

@@ -64,6 +64,7 @@ function flattenRelatedWords(data) {
 }
 
 const switchWord = async (word) => {
+  inputField.value = ''
   guessedWords.value.push(word)
   relatedWords.value = []
   const relatedData = await getRelatedWordsData(word)

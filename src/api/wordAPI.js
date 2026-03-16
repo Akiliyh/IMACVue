@@ -13,7 +13,7 @@ const getWordsData = async function name() {
 
 const getWordData = async function name() {
   const response = await fetch(
-    'https://api.wordnik.com/v4/words.json/randomWord?&hasDictionaryDef=true&excludePartOfSpeech=proper-noun,abbreviation&minCorpusCount=10000&minLength=3&maxLength=12&api_key=3we3tm2pohigikot1l08soicb6y4sgoqare3wzgrpbc5gif4v',
+    'https://api.wordnik.com/v4/words.json/randomWord?&hasDictionaryDef=true&excludePartOfSpeech=proper-noun,abbreviation&minCorpusCount=20000&minLength=3&maxLength=12&api_key=3we3tm2pohigikot1l08soicb6y4sgoqare3wzgrpbc5gif4v',
   )
   if (response.status == 200) {
     const data = await response.json()

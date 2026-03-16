@@ -7,6 +7,7 @@ import {
   getWordDefinitionData,
 } from '@/api/wordAPI'
 import WordCard from '@/components/WordCard.vue'
+import WordDefinition from '@/components/WordDefinition.vue' // change name later
 
 import { useRouter } from 'vue-router'
 
@@ -145,12 +146,12 @@ const checkGameOver = computed(() => {
 
       <div>
         <i v-if="!firstWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-        <p v-else>{{ firstWord.word }}</p>
+        <WordDefinition v-else :word="firstWord.word"></WordDefinition>
       </div>
 
       <div>
         <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-        <p v-else>{{ destWord.word }}</p>
+        <WordDefinition v-else :word="destWord.word"></WordDefinition>
       </div>
     </div>
 

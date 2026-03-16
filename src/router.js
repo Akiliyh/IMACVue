@@ -6,6 +6,7 @@ import AboutView from './WordGame.vue'
 const routes = [
   { path: '/', component: HomeView },
   { path: '/about', component: AboutView },
+  { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 
 const router = createRouter({

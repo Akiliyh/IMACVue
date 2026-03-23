@@ -12,7 +12,7 @@ import WordDefinition from '@/components/WordDefinition.vue' // change name late
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-router.push('/about')
+router.push('/game')
 
 const firstWord = ref('')
 const destWord = ref('')
@@ -61,7 +61,8 @@ function flattenRelatedWords(data) {
   })
 
   console.log(newData)
-  return newData
+
+  return newData.sort(() => Math.random() - 0.5)
 }
 
 const switchWord = async (word) => {
@@ -118,7 +119,7 @@ const filteredWords = computed(() => {
 
   console.log(tagFiltered)
 
-  return tagFiltered.sort(() => Math.random() - 0.5)
+  return tagFiltered;
 })
 
 const checkGameOver = computed(() => {

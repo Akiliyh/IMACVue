@@ -1,11 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-import HomeView from './TestPage.vue'
-import AboutView from './WordGame.vue'
+import HomePage from './HomePage.vue'
+import GamePage from './WordGame.vue'
 
 const routes = [
-  { path: '/', component: HomeView },
-  { path: '/about', component: AboutView },
+  { path: '/', component: HomePage },
+  { path: '/game', component: GamePage },
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 

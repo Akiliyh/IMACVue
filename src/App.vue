@@ -5,7 +5,7 @@ import 'primeicons/primeicons.css'
 <template>
   <nav>
     <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/about">Go to About</RouterLink>
+    <RouterLink to="/game">Play</RouterLink>
   </nav>
   <main>
     <RouterView />
@@ -20,6 +20,11 @@ import 'primeicons/primeicons.css'
 
 * {
   font-family: Clash_Display;
+}
+
+#app {
+  position: relative;
+  z-index: 1;
 }
 
 body {

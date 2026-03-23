@@ -34,7 +34,11 @@ const toggleModal = async () => {
     {{ type }}
     <button @click="toggleModal()">Close</button>
   </dialog>
-  <div @click="toggleModal()" v-if="isModalOpen" class="fallback-background"></div>
+
+  <!-- we want to teleport to body so it takes fs -->
+  <Teleport to="body">
+    <div @click="toggleModal()" v-if="isModalOpen" class="fallback-background"></div>
+  </Teleport>
 </template>
 
 <style lang="scss">
@@ -54,6 +58,7 @@ const toggleModal = async () => {
 }
 
 .fallback-background {
+  cursor: pointer;
   z-index: 0;
   width: 100vw;
   height: 100vh;

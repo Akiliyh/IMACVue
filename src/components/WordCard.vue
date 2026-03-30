@@ -36,55 +36,55 @@ const props = defineProps({
   }
 
   &.hyponym {
-    background-color: blanchedalmond;
+    background-color: $subtle-azur;
   }
 
   &.synonym {
-    background-color: blueviolet;
+    background-color: $subtle-sanguine;
   }
 
   &.hypernym {
-    background-color: silver;
+    background-color: $subtle-bordeaux;
   }
 
   &.word.same-context {
-    background-color: azure;
+    background-color: $subtle-green;
   }
 
   &.rhyme {
-    background-color: burlywood;
+    background-color: $subtle-aubergine;
   }
 
   &.verb-stem {
-    background-color: khaki;
+    background-color: $subtle-orange;
   }
 
   &.antonym {
-    background-color: floralwhite;
+    background-color: $subtle-purple;
   }
 
   &.etymologically-related-term {
-    background-color: salmon;
+    background-color: $subtle-silver;
   }
 
   &.cross-reference {
-    background-color: aquamarine;
+    background-color: $subtle-pink;
   }
 
   &.equivalent {
-    background-color: mistyrose;
+    background-color: $subtle-mandarin;
   }
 
   &.verb-form {
-    background-color: mediumturquoise;
+    background-color: $subtle-peach;
   }
 
   &.variant {
-    background-color: ivory;
+    background-color: $subtle-cyan;
   }
 
   &.form {
-    background-color: aliceblue;
+    background-color: $subtle-yellow;
   }
 }
 </style>

@@ -8,6 +8,7 @@ import {
 } from '@/api/wordAPI'
 import WordCard from '@/components/WordCard.vue'
 import WordDefinition from '@/components/WordDefinition.vue' // change name later
+import DropdownButton from '@/components/DropdownButton.vue'
 
 import { useRouter } from 'vue-router'
 
@@ -130,19 +131,11 @@ const checkGameOver = computed(() => {
 <template>
   <div class="info">
     <div>
-      <h1>Cnon</h1>
+      <h1>Trouver nom</h1>
 
       <div>
         <input type="text" v-model="inputField" />
-        <button
-          v-for="[key, value] of Object.entries(filters)"
-          :key="key"
-          :class="'button ' + (value ? 'activated' : '')"
-          @click="toggleFilter(key.toString())"
-        >
-          {{ key.charAt(0).toUpperCase() + key.slice(1) }}
-          <!-- for capitalization -->
-        </button>
+        <DropdownButton :filters="filters" :toggleFilter="toggleFilter"></DropdownButton>
       </div>
 
       <div>
@@ -168,14 +161,8 @@ const checkGameOver = computed(() => {
 
   <div class="words" v-if="!checkGameOver">
     <i v-if="relatedWords.length == 0" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-    <WordCard
-      v-else
-      v-for="word in filteredWords"
-      :key="word.id"
-      :word="word.word"
-      :type="word.type"
-      :switchWord="switchWord"
-    ></WordCard>
+    <WordCard v-else v-for="word in filteredWords" :key="word.id" :word="word.word" :type="word.type"
+      :switchWord="switchWord"></WordCard>
   </div>
   <div class="div" v-else-if="guessedWords.length > 0">
     <h1>Congrats!</h1>

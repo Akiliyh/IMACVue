@@ -131,9 +131,9 @@ const checkGameOver = computed(() => {
 <template>
   <div class="info">
     <div>
-      <h1>Trouver nom</h1>
+      <h1>Lexikr</h1>
 
-      <div>
+      <div class="filtering">
         <input type="text" v-model="inputField" />
         <DropdownButton :filters="filters" :toggleFilter="toggleFilter"></DropdownButton>
       </div>
@@ -207,6 +207,11 @@ i.pi-spin {
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    &.filtering {
+      gap: 20px;
+      height: fit-content;
+    }
   }
 }
 

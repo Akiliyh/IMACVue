@@ -47,7 +47,7 @@ const filteredItems = computed(() => {
 .dropbtn {
   background-color: $primary-color;
   color: white;
-  padding: 16px;
+  padding: 5px 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -55,6 +55,8 @@ const filteredItems = computed(() => {
   display: flex;
   gap: 10px;
   align-items: center;
+  min-width: 100px;
+  justify-content: center;
 }
 
 .dropbtn:hover {

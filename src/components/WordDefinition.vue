@@ -27,7 +27,7 @@ const toggleModal = async () => {
 <template>
   <div @click="toggleModal()" class="definition">
     <p>{{ word }}</p>
-    <i class="pi pi-question" style="font-size: 0.8rem"></i>
+    <i class="pi pi-question" style="font-size: 0.5rem"></i>
   </div>
 
 
@@ -79,10 +79,22 @@ const toggleModal = async () => {
   cursor: pointer;
   border-radius: 10px;
   transition: background-color 0.5s ease;
-  padding: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
   &:hover {
     background-color: rgb(241, 240, 240);
+
+    & i {
+      opacity: 100%;
+    }
+  }
+
+  i {
+    opacity: 0%;
+    transition: ease .2s;
   }
 
   p {

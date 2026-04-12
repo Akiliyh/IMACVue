@@ -41,6 +41,8 @@ const filteredItems = computed(() => {
       </div>
     </div>
   </div>
+
+  <div v-if="isOpen" class="fallback-screen" @click="toggleDropdown"></div>
 </template>
 
 <style lang="scss">
@@ -73,7 +75,7 @@ const filteredItems = computed(() => {
   background-color: white;
   min-width: 100px;
   border: 1px solid #ddd;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   top: 70px;
@@ -99,5 +101,14 @@ const filteredItems = computed(() => {
       accent-color: $primary-color;
     }
   }
+}
+
+.fallback-screen {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  z-index: 1;
 }
 </style>

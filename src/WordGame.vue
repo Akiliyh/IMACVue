@@ -231,5 +231,7 @@ i.pi-spin {
   justify-content: initial;
   gap: 10px;
   overflow: scroll;
+  margin: 0 10px;
+  flex: 1;
 }
 </style>

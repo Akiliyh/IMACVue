@@ -9,6 +9,7 @@ import {
 import WordCard from '@/components/WordCard.vue'
 import WordDefinition from '@/components/WordDefinition.vue' // change name later
 import DropdownButton from '@/components/DropdownButton.vue'
+import CongratsComp from '@/components/CongratsComp.vue'
 
 import { useRouter } from 'vue-router'
 
@@ -39,6 +40,14 @@ const filters = ref({
   variant: false,
   equivalent: false,
 })
+
+function restartGame() {
+  destWord.value = ""
+  firstWord.value = ""
+  filteredWords.value.splice(0)
+  guessedWords.value.splice(0)
+  initGame()
+}
 
 function flattenRelatedWords(data) {
   // here we want to get the word and its type at the same level
@@ -74,7 +83,8 @@ const switchWord = async (word) => {
   relatedWords.value = flattenRelatedWords(relatedData)
 }
 
-onMounted(async () => {
+const initGame = async (word) => {
+
   const firstData = await getWordData()
   firstWord.value = firstData
   guessedWords.value.push(firstData.word)
@@ -95,6 +105,10 @@ onMounted(async () => {
 
   const relatedData = await getRelatedWordsData(firstData.word)
   relatedWords.value = flattenRelatedWords(relatedData)
+}
+
+onMounted(async () => {
+  initGame();
 })
 
 // we deal with the filtering here
@@ -126,6 +140,8 @@ const filteredWords = computed(() => {
 const checkGameOver = computed(() => {
   return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
 })
+
+
 </script>
 
 <template>
@@ -164,20 +180,13 @@ const checkGameOver = computed(() => {
     <WordCard v-else v-for="word in filteredWords" :key="word.id" :word="word.word" :type="word.type"
       :switchWord="switchWord"></WordCard>
   </div>
-  <div class="div" v-else-if="guessedWords.length > 0">
-    <h1>Congrats!</h1>
-  </div>
+
+  <CongratsComp :isGameOver="guessedWords.length > 0 && checkGameOver" :guessedWords="guessedWords"
+    :restartGame="restartGame">
+  </CongratsComp>
 </template>
 
-<style scoped>
-/* to put in a button component after */
-
-.button {
-  &.activated {
-    background-color: gold;
-  }
-}
-
+<style scoped lang="scss">
 i.pi-spin {
   width: fit-content;
   height: fit-content;
@@ -191,14 +200,15 @@ i.pi-spin {
 }
 
 .info {
+  z-index: 1;
   position: sticky;
   top: 10px;
   background: white;
   padding: 10px;
   border-radius: 10px;
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
+  width: auto;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 20px;
   box-shadow: 0 3px 10px #0202630d;
@@ -211,6 +221,18 @@ i.pi-spin {
     &.filtering {
       gap: 20px;
       height: fit-content;
+
+      input {
+        border-radius: 10px;
+        height: 100%;
+        border: 2px $subtle-aubergine solid;
+        padding: 2px 5px;
+
+        &:focus-visible {
+          outline: 3px solid $subtle-orange;
+        }
+
+      }
     }
   }
 }

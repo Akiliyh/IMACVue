@@ -47,8 +47,8 @@ const filteredItems = computed(() => {
 
 <style lang="scss">
 .dropbtn {
-  background-color: $primary-color;
-  color: white;
+  background-color: $subtle-mandarin;
+  // color: white;
   padding: 5px 16px;
   font-size: 16px;
   border: none;
@@ -62,7 +62,7 @@ const filteredItems = computed(() => {
 }
 
 .dropbtn:hover {
-  background-color: #3e8e41;
+  background-color: $subtle-orange;
 }
 
 .dropdown {
@@ -98,7 +98,7 @@ const filteredItems = computed(() => {
     }
 
     input {
-      accent-color: $primary-color;
+      accent-color: $subtle-orange;
     }
   }
 }

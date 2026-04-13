@@ -54,10 +54,11 @@ const toggleModal = async () => {
   position: fixed;
   top: 100px;
   border-radius: 5px;
-  border: 1px solid grey;
+  border: none;
   display: flex;
   gap: 10px;
   max-width: 80vw;
+  box-shadow: 0 3px 10px #0202630d;
 
   button {
     cursor: pointer;

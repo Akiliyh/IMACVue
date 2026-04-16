@@ -2,13 +2,11 @@
 import 'primeicons/primeicons.css'
 
 import FooterComp from '@/components/FooterComp.vue'
+import NavComp from '@/components/NavComp.vue'
 </script>
 
 <template>
-  <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/game">Play</RouterLink>
-  </nav>
+  <NavComp />
   <main>
     <RouterView />
     <FooterComp></FooterComp>
@@ -23,6 +21,10 @@ import FooterComp from '@/components/FooterComp.vue'
 
 * {
   font-family: Clash_Display;
+}
+
+.pi-spin:not(.i-word) {
+  color: $subtle-peach;
 }
 
 #app {

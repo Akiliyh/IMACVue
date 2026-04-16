@@ -194,7 +194,7 @@ const checkGameOver = computed(() => {
   </header>
 
   <div class="words" v-if="!checkGameOver">
-    <i v-if="relatedWords.length == 0" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <i v-if="relatedWords.length == 0" class="pi pi-spin pi-spinner i-word" style="font-size: 2rem"></i>
     <WordCard v-else v-for="word in filteredWords" :key="word.id" :word="word.word" :type="word.type"
       :switchWord="switchWord"></WordCard>
   </div>
@@ -205,10 +205,9 @@ const checkGameOver = computed(() => {
 </template>
 
 <style scoped lang="scss">
-i.pi-spin {
+i.pi-spin.i-word {
   width: fit-content;
   height: fit-content;
-  color: $subtle-peach;
 
   .words & {
     font-size: 2rem;

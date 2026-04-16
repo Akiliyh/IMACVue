@@ -42,7 +42,7 @@ const toggleModal = async () => {
       </dialog>
     </Transition>
     <Transition>
-      <div @click="toggleModal()" v-if="isModalOpen" class="fallback-background"></div>
+      <div @click="toggleModal()" v-if="isModalOpen" class="def-fallback-background"></div>
     </Transition>
 
   </Teleport>
@@ -103,7 +103,7 @@ const toggleModal = async () => {
   }
 }
 
-.fallback-background {
+.def-fallback-background {
   cursor: pointer;
   z-index: 1;
   width: 100vw;

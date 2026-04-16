@@ -1,13 +1,21 @@
 <script setup>
+
+import {
+  useMediaQuery
+} from '@vueuse/core'
+
 const props = defineProps({
   word: { type: String, required: true },
   type: { type: String, default: 'synonym', required: true },
   switchWord: { type: Function, required: true },
 })
+
+const isMobileScreen = useMediaQuery('(max-width: 768px)')
 </script>
 
 <template>
-  <div :class="'word ' + type" @click="switchWord(word)" tabindex="0" v-on:keypress="switchWord(word)">
+  <div :class="'word ' + type + ' ' + (isMobileScreen ? ' mobile' : '')" @click="switchWord(word)" tabindex="0"
+    v-on:keypress="switchWord(word)">
     <h1>{{ word }}</h1>
     <p>{{ type }}</p>
   </div>
@@ -23,6 +31,14 @@ const props = defineProps({
   height: fit-content;
   border: 3px solid transparent;
   transition: border 0.3s ease-out;
+
+  &.mobile {
+    padding: 5px 15px;
+
+    h1 {
+      font-size: 1.3rem;
+    }
+  }
 
   &:hover,
   &:focus-visible {

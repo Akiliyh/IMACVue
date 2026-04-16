@@ -78,7 +78,7 @@ const filteredItems = computed(() => {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  top: 70px;
+  top: 40px;
   padding: 5px;
   gap: 5px;
   border-radius: 5px;

@@ -1,6 +1,10 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import {
+  useMediaQuery
+} from '@vueuse/core'
+
+import {
   getWordData,
   getRelatedWordsData,
   getWordsData,
@@ -12,6 +16,8 @@ import DropdownButton from '@/components/DropdownButton.vue'
 import CongratsComp from '@/components/CongratsComp.vue'
 
 import { useRouter } from 'vue-router'
+
+const isMobileScreen = useMediaQuery('(max-width: 768px)')
 
 const router = useRouter()
 router.push('/game')
@@ -154,24 +160,36 @@ const checkGameOver = computed(() => {
         <DropdownButton :filters="filters" :toggleFilter="toggleFilter"></DropdownButton>
       </div>
 
-      <div>
-        <i v-if="!firstWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-        <WordDefinition v-else :word="firstWord.word"></WordDefinition>
-      </div>
+      <div class="wanted-words">
+        <div>
+          <i v-if="!firstWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+          <WordDefinition v-else :word="firstWord.word"></WordDefinition>
+        </div>
 
-      <div>
-        <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
-        <WordDefinition v-else :word="destWord.word"></WordDefinition>
+        <div>
+          <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+          <WordDefinition v-else :word="destWord.word"></WordDefinition>
+        </div>
       </div>
     </div>
-
-    <div class="guessed-words">
-      <template v-for="(guessedWord, index) in guessedWords" :key="guessedWord.indexOf">
-        <template v-if="index > 0">
-          <p>—</p>
+    <div v-if="!isMobileScreen"
+      style="display: flex; flex-direction: column; gap: 10px; width: 95%; margin-left: auto; margin-right: auto;">
+      <span style="font-size: .8rem;">Guessed words:</span>
+      <div class="guessed-words">
+        <template v-for="(guessedWord, index) in guessedWords" :key="guessedWord.indexOf">
+          <template v-if="index > 0">
+            <p>—</p>
+          </template>
+          <p>{{ guessedWord }}</p>
         </template>
-        <p>{{ guessedWord }}</p>
-      </template>
+      </div>
+    </div>
+    <div v-else
+      style="display: flex; flex-direction: column; gap: 10px; width: 95%; margin-left: auto; margin-right: auto;">
+      <span style="font-size: .8rem;">Last guessed word:</span>
+      <div class="guessed-words">
+        <p>{{ guessedWords[guessedWords.length - 1] }}</p>
+      </div>
     </div>
   </div>
 
@@ -190,6 +208,7 @@ const checkGameOver = computed(() => {
 i.pi-spin {
   width: fit-content;
   height: fit-content;
+  color: $subtle-peach;
 
   .words & {
     font-size: 2rem;
@@ -197,6 +216,10 @@ i.pi-spin {
     margin-right: auto;
     margin-top: 10vh;
   }
+}
+
+.wanted-words {
+  margin: 10px;
 }
 
 .info {
@@ -217,6 +240,8 @@ i.pi-spin {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 50px;
 
     &.filtering {
       gap: 20px;
@@ -243,6 +268,7 @@ i.pi-spin {
 
   p {
     width: fit-content;
+    margin: 0;
   }
 }
 

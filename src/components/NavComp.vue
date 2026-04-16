@@ -31,7 +31,7 @@ nav {
   background-color: white;
   padding: 5px 7px;
   border-radius: 50px;
-  margin-top: 5px;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -27,11 +27,14 @@ const props = defineProps({
             <span class="tries">{{ guessedWords.length }}</span>
             <span>{{ guessedWords.length === 1 ? "move!" : "moves!" }} </span>
           </div>
-          <span>Damn you know words bro</span>
+          <span>Damn you know words!</span>
         </div>
         <div class="buttons">
           <button @click="restartGame()">Restart Game</button>
-          <button @click="restartGame()">Share</button>
+          <a href="/"><button>Home</button></a>
+
+          <button>Share</button>
+          <!-- fake it until you make it -->
         </div>
 
       </div>
@@ -39,7 +42,7 @@ const props = defineProps({
   </Transition>
 
   <Transition>
-    <div v-if="isGameOver" class="fallback-background"></div>
+    <div v-if="isGameOver" class="congrats-fallback-background"></div>
   </Transition>
 
   <FireworksComp v-if="isGameOver"></FireworksComp>
@@ -88,6 +91,7 @@ const props = defineProps({
   & .buttons {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 
     button {
       border-radius: 10px;
@@ -135,8 +139,7 @@ const props = defineProps({
   gap: 10px;
 }
 
-.fallback-background {
-  pointer-events: none;
+.congrats-fallback-background {
   z-index: 1;
   width: 100vw;
   height: 100vh;

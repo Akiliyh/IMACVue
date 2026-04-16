@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import {
   useMediaQuery
 } from '@vueuse/core'
@@ -147,6 +147,34 @@ const checkGameOver = computed(() => {
   return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
 })
 
+localStorage.clear()
+
+watch(
+  checkGameOver,
+  (isOver) => {
+    if (isOver) {
+      console.log(JSON.parse(localStorage.getItem('lexikr-pb')));
+      const data = {
+        guessedWords: guessedWords.value.length,
+        firstWord: firstWord.value,
+        destWord: destWord.value,
+        finishedAt: Date.now(),
+      }
+
+      if (!JSON.parse(localStorage.getItem('lexikr-pb'))) {
+        localStorage.setItem('lexikr-pb', JSON.stringify(data))
+        return
+      }
+      if (JSON.parse(localStorage.getItem('lexikr-pb')).guessedWords > guessedWords.value.length) {
+
+
+
+        localStorage.setItem('lexikr-pb', JSON.stringify(data))
+      }
+    }
+  }
+)
+
 
 </script>
 
@@ -166,6 +194,7 @@ const checkGameOver = computed(() => {
           <WordDefinition v-else :word="firstWord.word"></WordDefinition>
         </div>
 
+        <i class="pi pi-arrow-right" style="font-size: 0.8rem"></i>
         <div>
           <i v-if="!destWord.word" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
           <WordDefinition v-else :word="destWord.word"></WordDefinition>
@@ -199,8 +228,7 @@ const checkGameOver = computed(() => {
       :switchWord="switchWord"></WordCard>
   </div>
 
-  <CongratsComp :isGameOver="guessedWords.length > 0 && checkGameOver" :guessedWords="guessedWords"
-    :restartGame="restartGame">
+  <CongratsComp :isGameOver="guessedWords.length > 2" :guessedWords="guessedWords" :restartGame="restartGame">
   </CongratsComp>
 </template>
 

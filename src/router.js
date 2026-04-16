@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
-import HomePage from './HomePage.vue'
-import GamePage from './WordGame.vue'
+import HomePage from './pages/HomePage.vue'
+import GamePage from './pages/WordGame.vue'
 
 const routes = [
   { path: '/', component: HomePage },

@@ -151,7 +151,7 @@ const checkGameOver = computed(() => {
 </script>
 
 <template>
-  <div class="info">
+  <header class="info">
     <div>
       <h1>Lexikr</h1>
 
@@ -191,7 +191,7 @@ const checkGameOver = computed(() => {
         <p>{{ guessedWords[guessedWords.length - 1] }}</p>
       </div>
     </div>
-  </div>
+  </header>
 
   <div class="words" v-if="!checkGameOver">
     <i v-if="relatedWords.length == 0" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>

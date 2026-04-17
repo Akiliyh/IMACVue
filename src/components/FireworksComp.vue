@@ -10,7 +10,7 @@
 
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 // courtesy of Eddie Lin Codepen
 
 @use 'sass:math';

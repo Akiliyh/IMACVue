@@ -45,7 +45,7 @@ const filteredItems = computed(() => {
   <div v-if="isOpen" class="fallback-screen" @click="toggleDropdown"></div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dropbtn {
   background-color: $subtle-mandarin;
   // color: white;

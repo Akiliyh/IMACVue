@@ -11,7 +11,7 @@
   </footer>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .footer {
   position: static;
   left: 0;

@@ -48,7 +48,7 @@ const toggleModal = async () => {
   </Teleport>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dialog {
   z-index: 2;
   position: fixed;

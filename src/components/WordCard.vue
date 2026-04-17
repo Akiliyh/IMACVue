@@ -21,7 +21,7 @@ const isMobileScreen = useMediaQuery('(max-width: 768px)')
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .word {
   background-color: $primary-color;
   padding: 20px;

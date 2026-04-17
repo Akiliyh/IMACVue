@@ -48,7 +48,7 @@ const props = defineProps({
   <FireworksComp v-if="isGameOver"></FireworksComp>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .congrats-dialog {
   z-index: 2;
   position: fixed;

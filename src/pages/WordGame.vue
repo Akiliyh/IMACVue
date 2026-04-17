@@ -144,36 +144,29 @@ const filteredWords = computed(() => {
 })
 
 const checkGameOver = computed(() => {
-  return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
+  return (guessedWords.value.length > 2) ? true : false;
+  // debug
+  // return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
 })
 
-localStorage.clear()
+// here if it's over and better pb we store the pb in localstorage
 
-watch(
-  checkGameOver,
-  (isOver) => {
-    if (isOver) {
-      console.log(JSON.parse(localStorage.getItem('lexikr-pb')));
-      const data = {
-        guessedWords: guessedWords.value.length,
-        firstWord: firstWord.value,
-        destWord: destWord.value,
-        finishedAt: Date.now(),
-      }
+watch(checkGameOver, (isOver) => {
+  if (!isOver) return
 
-      if (!JSON.parse(localStorage.getItem('lexikr-pb'))) {
-        localStorage.setItem('lexikr-pb', JSON.stringify(data))
-        return
-      }
-      if (JSON.parse(localStorage.getItem('lexikr-pb')).guessedWords > guessedWords.value.length) {
+  const prev = JSON.parse(localStorage.getItem('lexikr-pb'))
 
-
-
-        localStorage.setItem('lexikr-pb', JSON.stringify(data))
-      }
-    }
+  const data = {
+    guessedWords: guessedWords.value.length,
+    firstWord: firstWord.value.word,
+    destWord: destWord.value.word,
+    finishedAt: Date.now(),
   }
-)
+
+  if (!prev || prev.guessedWords > guessedWords.value.length) {
+    localStorage.setItem('lexikr-pb', JSON.stringify(data))
+  }
+})
 
 
 </script>
@@ -228,7 +221,7 @@ watch(
       :switchWord="switchWord"></WordCard>
   </div>
 
-  <CongratsComp :isGameOver="guessedWords.length > 2" :guessedWords="guessedWords" :restartGame="restartGame">
+  <CongratsComp :isGameOver="checkGameOver" :guessedWords="guessedWords" :restartGame="restartGame">
   </CongratsComp>
 </template>
 

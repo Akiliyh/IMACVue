@@ -24,7 +24,7 @@ const isGame = computed(() => route.path === '/game')
   </nav>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 nav {
   margin-left: auto;
   margin-right: auto;

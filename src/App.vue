@@ -21,6 +21,10 @@ import NavComp from '@/components/NavComp.vue'
 
 * {
   font-family: Clash_Display;
+
+  &:focus-visible {
+    outline: 3px solid $subtle-orange;
+  }
 }
 
 .pi-spin:not(.i-word) {

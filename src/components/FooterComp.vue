@@ -68,7 +68,7 @@
     a {
       color: rgb(21, 49, 74);
       text-decoration: none;
-      transition: 0.1s;
+      transition: 0.1s font-weight;
       width: fit-content;
 
       @media (max-width: 768px) {

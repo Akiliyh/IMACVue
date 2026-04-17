@@ -22,7 +22,7 @@ const filteredItems = computed(() => {
 
 <template>
   <div class="dropdown">
-    <div class="dropbtn" @click="toggleDropdown">
+    <div class="dropbtn" @click="toggleDropdown" tabindex="0" v-on:keypress="toggleDropdown">
       <span>Filters</span>
 
       <i v-if="isOpen" class="pi pi-chevron-down" style="font-size: 1rem"></i>
@@ -31,7 +31,8 @@ const filteredItems = computed(() => {
 
     <div v-if="isOpen" class="dropdown-content">
 
-      <div class="item" v-for="item in Object.entries(props.filters)" :key="item" @click="toggleFilter(item[0])">
+      <div class="item" v-for="item in Object.entries(props.filters)" :key="item" @click="toggleFilter(item[0])"
+        v-on:keypress="toggleFilter(item[0])">
         <input type="checkbox" :checked="item[1]" name="" id="">
         <span>
           {{ item[0].charAt(0).toUpperCase() + item[0].slice(1) }}

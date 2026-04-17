@@ -47,7 +47,7 @@ nav {
     border-radius: 50px;
     padding: 5px 10px;
     color: black;
-    transition: .5s ease;
+    transition: .5s ease background-color;
 
     &:hover {
       background-color: #f7f7f7;

@@ -4,7 +4,6 @@ const getWordsData = async function name() {
   )
   if (response.status == 200) {
     const data = await response.json()
-    console.log(data)
     return data
   } else {
     throw new Error(response.statusText)
@@ -17,7 +16,6 @@ const getWordData = async function name() {
   )
   if (response.status == 200) {
     const data = await response.json()
-    console.log(data)
     return data
   } else {
     throw new Error(response.statusText)
@@ -32,7 +30,6 @@ const getWordDefinitionData = async function name(word) {
   )
   if (response.status == 200) {
     const data = await response.json()
-    console.log(data)
     return data
   } else {
     throw new Error(response.statusText)
@@ -47,7 +44,6 @@ const getRelatedWordsData = async function name(word) {
   )
   if (response.status == 200) {
     const data = await response.json()
-    console.log(data)
     return data
   } else {
     throw new Error(response.statusText)

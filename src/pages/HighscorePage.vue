@@ -51,7 +51,7 @@ const pb = JSON.parse(localStorage.getItem('lexikr-pb'))
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  margin-top: auto;
+  margin-top: 50px;
   margin-bottom: auto;
 
   .info {

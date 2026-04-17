@@ -3,7 +3,6 @@ import CrownIcon from '@/assets/img/crown.svg'
 
 const pb = JSON.parse(localStorage.getItem('lexikr-pb'))
 
-
 </script>
 
 <template>

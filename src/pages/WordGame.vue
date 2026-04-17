@@ -64,7 +64,6 @@ function flattenRelatedWords(data) {
     })),
   )
 
-  console.log(newData)
   const seen = new Set()
 
   newData = newData.filter((obj) => {
@@ -76,7 +75,7 @@ function flattenRelatedWords(data) {
     return true
   })
 
-  console.log(newData)
+  // console.log(newData)
 
   return newData.sort(() => Math.random() - 0.5)
 }
@@ -94,20 +93,12 @@ const initGame = async (word) => {
   const firstData = await getWordData()
   firstWord.value = firstData
   guessedWords.value.push(firstData.word)
-  // firstWord.value = { word: 'accompanying', id: 0 }
-  // firstData.word = 'accompanying'
-  console.log(firstData.firstWord)
-
-  const firstDefinitionData = await getWordDefinitionData(firstData.word)
-  console.log(firstDefinitionData)
 
   const destData = await getWordData()
   destWord.value = destData
-  console.log(destData.destWord)
 
   const wordsData = await getWordsData()
   words.value = wordsData.results
-  console.log(wordsData.results)
 
   const relatedData = await getRelatedWordsData(firstData.word)
   relatedWords.value = flattenRelatedWords(relatedData)
@@ -125,6 +116,7 @@ const toggleFilter = (key) => {
 
 const filteredWords = computed(() => {
   const inputFiltered = relatedWords.value.filter((word) => {
+    window.scrollTo(0, 0); // we want to scroll to the top so we don't miss words
     if (inputField.value == '') return true
     else return word.word.toLowerCase().includes(inputField.value.toLowerCase())
   })
@@ -138,7 +130,7 @@ const filteredWords = computed(() => {
     return matchesActiveFilter
   })
 
-  console.log(tagFiltered)
+  // console.log(tagFiltered)
 
   return tagFiltered;
 })
@@ -183,7 +175,8 @@ watch(checkGameOver, (isOver) => {
 
       <div class="filtering">
         <input type="text" v-model="inputField" />
-        <DropdownButton :filters="filters" :toggleFilter="toggleFilter"></DropdownButton>
+        <DropdownButton :filters="filters" :toggleFilter="toggleFilter">
+        </DropdownButton>
       </div>
 
       <div class="wanted-words">

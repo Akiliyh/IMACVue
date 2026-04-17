@@ -9,7 +9,7 @@ const pb = JSON.parse(localStorage.getItem('lexikr-pb'))
   <div class="home">
     <h1>Explore a new world of wordgaming!</h1>
     <p>
-      From one word to another etc find like Wikirace!
+      Navigate from one word to another, just like playing a Wikirace!
     </p>
 
     <div class="content">

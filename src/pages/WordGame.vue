@@ -11,7 +11,7 @@ import {
   getWordDefinitionData,
 } from '@/api/wordAPI'
 import WordCard from '@/components/WordCard.vue'
-import WordDefinition from '@/components/WordDefinition.vue' // change name later
+import WordDefinition from '@/components/WordDefinition.vue'
 import DropdownButton from '@/components/DropdownButton.vue'
 import CongratsComp from '@/components/CongratsComp.vue'
 
@@ -136,9 +136,9 @@ const filteredWords = computed(() => {
 })
 
 const checkGameOver = computed(() => {
-  return (guessedWords.value.length > 2) ? true : false;
+  // return (guessedWords.value.length > 2) ? true : false;
   // debug
-  // return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
+  return guessedWords.value[guessedWords.value.length - 1] === destWord.value.word
 })
 
 // here if it's over and better pb we store the pb in localstorage
@@ -219,7 +219,8 @@ watch(checkGameOver, (isOver) => {
       :switchWord="switchWord"></WordCard>
   </div>
 
-  <CongratsComp :isGameOver="checkGameOver" :guessedWords="guessedWords" :restartGame="restartGame">
+  <CongratsComp :isGameOver="checkGameOver && guessedWords.length > 0" :guessedWords="guessedWords"
+    :restartGame="restartGame">
   </CongratsComp>
 </template>
 

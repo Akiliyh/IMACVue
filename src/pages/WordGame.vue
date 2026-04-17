@@ -154,7 +154,8 @@ const checkGameOver = computed(() => {
 watch(checkGameOver, (isOver) => {
   if (!isOver) return
 
-  const prev = JSON.parse(localStorage.getItem('lexikr-pb'))
+  const prevPb = JSON.parse(localStorage.getItem('lexikr-pb'))
+  const recordsArray = JSON.parse(localStorage.getItem('lexikr-records') || "[]")
 
   const data = {
     guessedWords: guessedWords.value.length,
@@ -163,7 +164,11 @@ watch(checkGameOver, (isOver) => {
     finishedAt: Date.now(),
   }
 
-  if (!prev || prev.guessedWords > guessedWords.value.length) {
+  recordsArray.push(data);
+
+  localStorage.setItem('lexikr-records', JSON.stringify(recordsArray));
+
+  if (!prevPb || prevPb.guessedWords > guessedWords.value.length) {
     localStorage.setItem('lexikr-pb', JSON.stringify(data))
   }
 })

@@ -1,6 +1,4 @@
 <script setup>
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
 import HomeIcon from '@/assets/img/home.svg'
 import CrownIcon from '@/assets/img/crown.svg'
 

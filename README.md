@@ -1,6 +1,9 @@
-# vue-project
+# Lexikr
 
-This template should help get you started developing with Vue 3 in Vite.
+> [!WARNING]  
+> Attention, l'API utilisée ne permet que 5 requêtes toutes les minutes ce qui est relativement problématique.
+> Pour jouer au jeu il ne faut pas changer de mot pas trop rapidement
+> Le mieux aurait été d'afficher une modal lorsqu'une erreur est rencontrée
 
 ## Recommended IDE Setup
 

@@ -40,11 +40,14 @@ const pb = JSON.parse(localStorage.getItem('lexikr-pb'))
 <style scoped lang="scss">
 .home {
   width: 95%;
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 50px); // we remove the size of the navbar
 
   .info {
     font-size: .8rem;
@@ -59,6 +62,13 @@ button {
   padding: 5px 20px;
   border: none;
   transition: .1s ease-out;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 
   &:hover {
     background-color: $subtle-orange;

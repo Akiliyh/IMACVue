@@ -95,6 +95,8 @@ button {
 
 .record-section {
   width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .record-content {
